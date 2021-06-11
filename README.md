@@ -1,2 +1,3 @@
 # list_golang
-Try to use the Python list in Golang
+Always admired Python list 
+Try to make the same with Golang
