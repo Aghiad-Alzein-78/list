@@ -56,15 +56,15 @@ func list(a ...interface{}) List {
 }
 
 //get the length of the list
-func len(ls List) int {
+func Len(ls List) int {
 	return ls.length
 }
 
 //use the Stringer interface to print the list
 func (ls List) String() string {
 	str := "["
-	for i := 0; i < len(ls); i++ {
-		if i == len(ls)-1 {
+	for i := 0; i < Len(ls); i++ {
+		if i == Len(ls)-1 {
 			str += fmt.Sprintf("%v", ls.list[i])
 		} else {
 			str += fmt.Sprintf("%v,", ls.list[i])
@@ -77,8 +77,8 @@ func (ls List) String() string {
 //delete element from the list by index
 //will decrease the size
 //and check the types
-func (ls *List) delByIndex(index int) {
-	if index >= len(*ls) {
+func (ls *List) DelByIndex(index int) {
+	if index >= Len(*ls) {
 		panic(fmt.Sprintln("The index is bigger than the list size"))
 	}
 	typeToRemove := fmt.Sprintf("%T", ls.list[index])
@@ -92,7 +92,7 @@ func (ls *List) delByIndex(index int) {
 }
 
 //get the index of an element
-func (ls *List) findIndex(val interface{}) int {
+func (ls *List) Index(val interface{}) int {
 	for idx, item := range ls.list {
 		if item == val {
 			return idx
@@ -102,20 +102,20 @@ func (ls *List) findIndex(val interface{}) int {
 }
 
 //delete the desired element "Just Once"
-func (ls *List) delByValue(val interface{}) {
-	pos := ls.findIndex(val)
+func (ls *List) DelByValue(val interface{}) {
+	pos := ls.Index(val)
 	if pos != -1 {
-		ls.delByIndex(pos)
+		ls.DelByIndex(pos)
 	}
 }
 func main() {
 	ls := list(1, 2, 3, 4, 5, "Yes")
 	ls.Append(56, 74, 34, true, 22)
 	fmt.Println(ls)
-	fmt.Println(len(ls))
+	fmt.Println(Len(ls))
 	fmt.Println(ls.types)
-	ls.delByIndex(5)
-	ls.delByValue(true)
+	ls.DelByIndex(5)
+	ls.DelByValue(true)
 	fmt.Println(ls)
 	fmt.Println(ls.types)
 
