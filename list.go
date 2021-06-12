@@ -1,6 +1,6 @@
 //still developing it
 
-package main
+package list
 
 import (
 	"fmt"
@@ -170,21 +170,22 @@ func (ls *listStruct) Reverse() {
 	}
 	ls.list = tmp.list
 }
-func main() {
-	ls := List(15, 16, 99, 5, 8, 37, "Yes")
-	ls.Append(56, 98, 74, 6, 34, 5, true, 22, 99)
-	fmt.Println(ls)
-	fmt.Println(Len(ls))
-	fmt.Println(ls.types)
-	ls.DelByValue("Yes")
-	ls.DelByValue(true)
-	fmt.Println(ls)
-	fmt.Println(ls.types)
-	fmt.Println(ls.getType())
-	fmt.Println(ls.Index(34))
-	// ls.Clear()
-	ls.Sort()
-	fmt.Println(ls)
-	ls.Reverse()
-	fmt.Println(ls)
-}
+
+// func main() {
+// 	ls := List(15, 16, 99, 5, 8, 37, "Yes")
+// 	ls.Append(56, 98, 74, 6, 34, 5, true, 22, 99)
+// 	fmt.Println(ls)
+// 	fmt.Println(Len(ls))
+// 	fmt.Println(ls.types)
+// 	ls.DelByValue("Yes")
+// 	ls.DelByValue(true)
+// 	fmt.Println(ls)
+// 	fmt.Println(ls.types)
+// 	fmt.Println(ls.getType())
+// 	fmt.Println(ls.Index(34))
+// 	// ls.Clear()
+// 	ls.Sort()
+// 	fmt.Println(ls)
+// 	ls.Reverse()
+// 	fmt.Println(ls)
+// }
