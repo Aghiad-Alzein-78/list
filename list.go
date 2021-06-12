@@ -111,6 +111,7 @@ func (ls *listStruct) DelByValue(val interface{}) {
 		ls.DelByIndex(pos)
 	}
 }
+
 func (ls *listStruct) getType() string {
 	if len(ls.types) == 1 {
 		for k := range ls.types {
@@ -161,18 +162,29 @@ func (ls *listStruct) Clear() {
 	ls.types = nil
 
 }
+
+func (ls *listStruct) Reverse() {
+	tmp := List()
+	for i := range ls.list {
+		tmp.Append(ls.list[ls.length-1-i])
+	}
+	ls.list = tmp.list
+}
 func main() {
-	ls := List(1.0, 2.2, 3.2, 4.5, 5.3, "Yes")
-	ls.Append(56.98, 74.6, 34.5, true, 22.99)
+	ls := List(15, 16, 99, 5, 8, 37, "Yes")
+	ls.Append(56, 98, 74, 6, 34, 5, true, 22, 99)
 	fmt.Println(ls)
 	fmt.Println(Len(ls))
 	fmt.Println(ls.types)
-	ls.DelByIndex(5)
+	ls.DelByValue("Yes")
 	ls.DelByValue(true)
 	fmt.Println(ls)
 	fmt.Println(ls.types)
 	fmt.Println(ls.getType())
-	fmt.Println(ls.Index(34.5))
-	ls.Clear()
+	fmt.Println(ls.Index(34))
+	// ls.Clear()
+	ls.Sort()
+	fmt.Println(ls)
+	ls.Reverse()
 	fmt.Println(ls)
 }
