@@ -1,5 +1,4 @@
-//still developing it 
-
+//still developing it
 
 package main
 
@@ -33,7 +32,7 @@ func (tm typeMap) contains(item string) bool {
 
 //append to the list
 //will append multiple elements in one command
-func (ls *List) append(elements ...interface{}) {
+func (ls *List) Append(elements ...interface{}) {
 	if ls.length == 0 {
 		ls.types = make(map[string]int)
 	}
@@ -52,7 +51,7 @@ func (ls *List) append(elements ...interface{}) {
 //initialize list
 func list(a ...interface{}) List {
 	ls := List{}
-	ls.append(a...)
+	ls.Append(a...)
 	return ls
 }
 
@@ -111,7 +110,7 @@ func (ls *List) delByValue(val interface{}) {
 }
 func main() {
 	ls := list(1, 2, 3, 4, 5, "Yes")
-	ls.append(56, 74, 34, true, 22)
+	ls.Append(56, 74, 34, true, 22)
 	fmt.Println(ls)
 	fmt.Println(len(ls))
 	fmt.Println(ls.types)
