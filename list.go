@@ -121,13 +121,49 @@ func (ls *listStruct) getType() string {
 }
 
 func (ls *listStruct) Sort() {
-	sort.Slice((*ls).list, func(i, j int) bool {
-		return ls.list[i].(int) < ls.list[j].(int)
-	})
+	listType := ls.getType()
+	switch listType {
+	case "int":
+		{
+			sort.Slice((*ls).list, func(i, j int) bool {
+				return ls.list[i].(int) < ls.list[j].(int)
+			})
+		}
+	case "string":
+		{
+			sort.Slice((*ls).list, func(i, j int) bool {
+				return ls.list[i].(string) < ls.list[j].(string)
+			})
+		}
+	case "float64":
+		{
+			sort.Slice((*ls).list, func(i, j int) bool {
+				return ls.list[i].(float64) < ls.list[j].(float64)
+			})
+		}
+	case "float32":
+		{
+			sort.Slice((*ls).list, func(i, j int) bool {
+				return ls.list[i].(float32) < ls.list[j].(float32)
+			})
+		}
+	case "none":
+		{
+			panic("Can't convert this list elements must be from the same type")
+		}
+	}
+
+}
+
+func (ls *listStruct) Clear() {
+	ls.list = nil
+	ls.length = 0
+	ls.types = nil
+
 }
 func main() {
-	ls := List(1, 2, 3, 4, 5, "Yes")
-	ls.Append(56, 74, 34, true, 22)
+	ls := List(1.0, 2.2, 3.2, 4.5, 5.3, "Yes")
+	ls.Append(56.98, 74.6, 34.5, true, 22.99)
 	fmt.Println(ls)
 	fmt.Println(Len(ls))
 	fmt.Println(ls.types)
@@ -136,6 +172,7 @@ func main() {
 	fmt.Println(ls)
 	fmt.Println(ls.types)
 	fmt.Println(ls.getType())
-	ls.Sort()
+	fmt.Println(ls.Index(34.5))
+	ls.Clear()
 	fmt.Println(ls)
 }
