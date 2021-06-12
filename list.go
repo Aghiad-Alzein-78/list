@@ -8,7 +8,7 @@ import "fmt"
 //types will be used later in Sorting
 //list won't be able to sort unless it is
 //from the same type
-type List struct {
+type listStruct struct {
 	list   listAyuda
 	length int
 	types  typeMap
@@ -32,7 +32,7 @@ func (tm typeMap) contains(item string) bool {
 
 //append to the list
 //will append multiple elements in one command
-func (ls *List) Append(elements ...interface{}) {
+func (ls *listStruct) Append(elements ...interface{}) {
 	if ls.length == 0 {
 		ls.types = make(map[string]int)
 	}
@@ -49,19 +49,19 @@ func (ls *List) Append(elements ...interface{}) {
 }
 
 //initialize list
-func list(a ...interface{}) List {
-	ls := List{}
+func List(a ...interface{}) listStruct {
+	ls := listStruct{}
 	ls.Append(a...)
 	return ls
 }
 
 //get the length of the list
-func Len(ls List) int {
+func Len(ls listStruct) int {
 	return ls.length
 }
 
 //use the Stringer interface to print the list
-func (ls List) String() string {
+func (ls listStruct) String() string {
 	str := "["
 	for i := 0; i < Len(ls); i++ {
 		if i == Len(ls)-1 {
@@ -77,7 +77,7 @@ func (ls List) String() string {
 //delete element from the list by index
 //will decrease the size
 //and check the types
-func (ls *List) DelByIndex(index int) {
+func (ls *listStruct) DelByIndex(index int) {
 	if index >= Len(*ls) {
 		panic(fmt.Sprintln("The index is bigger than the list size"))
 	}
@@ -92,7 +92,7 @@ func (ls *List) DelByIndex(index int) {
 }
 
 //get the index of an element
-func (ls *List) Index(val interface{}) int {
+func (ls *listStruct) Index(val interface{}) int {
 	for idx, item := range ls.list {
 		if item == val {
 			return idx
@@ -102,14 +102,14 @@ func (ls *List) Index(val interface{}) int {
 }
 
 //delete the desired element "Just Once"
-func (ls *List) DelByValue(val interface{}) {
+func (ls *listStruct) DelByValue(val interface{}) {
 	pos := ls.Index(val)
 	if pos != -1 {
 		ls.DelByIndex(pos)
 	}
 }
 func main() {
-	ls := list(1, 2, 3, 4, 5, "Yes")
+	ls := List(1, 2, 3, 4, 5, "Yes")
 	ls.Append(56, 74, 34, true, 22)
 	fmt.Println(ls)
 	fmt.Println(Len(ls))
