@@ -2,7 +2,10 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 //Make it as a struct to add more functionality
 //types will be used later in Sorting
@@ -108,6 +111,20 @@ func (ls *listStruct) DelByValue(val interface{}) {
 		ls.DelByIndex(pos)
 	}
 }
+func (ls *listStruct) getType() string {
+	if len(ls.types) == 1 {
+		for k := range ls.types {
+			return k
+		}
+	}
+	return "none"
+}
+
+func (ls *listStruct) Sort() {
+	sort.Slice((*ls).list, func(i, j int) bool {
+		return ls.list[i].(int) < ls.list[j].(int)
+	})
+}
 func main() {
 	ls := List(1, 2, 3, 4, 5, "Yes")
 	ls.Append(56, 74, 34, true, 22)
@@ -118,5 +135,7 @@ func main() {
 	ls.DelByValue(true)
 	fmt.Println(ls)
 	fmt.Println(ls.types)
-
+	fmt.Println(ls.getType())
+	ls.Sort()
+	fmt.Println(ls)
 }
