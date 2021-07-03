@@ -171,6 +171,7 @@ func (ls *listStruct) Reverse() {
 	ls.list = tmp.list
 }
 
+//this while testing the package
 // func main() {
 // 	ls := List(15, 16, 99, 5, 8, 37, "Yes")
 // 	ls.Append(56, 98, 74, 6, 34, 5, true, 22, 99)
